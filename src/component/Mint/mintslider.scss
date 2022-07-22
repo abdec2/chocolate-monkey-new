@@ -1,0 +1,73 @@
+.logo-slider {
+
+    $min-image-size: 200px;
+    $max-image-size: 400px;
+
+    --image-size: #{$max-image-size};
+
+    // border: 1px solid #575757;
+    //padding: 20px;
+    overflow: hidden;
+    max-width: 2000px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    margin-top: -94px;
+
+    &:hover div {
+        animation-play-state: paused;
+    }
+
+    div {
+        display: flex;
+        position: relative;
+        animation: marquee 10s linear infinite;
+        justify-content: space-around;
+
+        // Debug: This is just to help see where the loop happens
+        // &:nth-of-type(1) { &, img { border:1px dashed red;  }}
+        // &:nth-of-type(2) { &, img { border:1px dashed blue; }}
+
+        // You may need this if there are too few images for the banner width
+        //min-width:100%;
+
+    }
+
+    img {
+        display: block;
+        min-width: var(--image-size);
+        height: var(--image-size);
+        margin: 0 1vw;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        // background: linear-gradient(to right, white, rgba(white, 0) 80px, rgba(white, 0) calc(100% - 80px), white);
+    }
+
+    @media (max-width:900px) {
+        --image-size: #{$min-image-size};
+        --image-size: min(max(#{$min-image-size}, 10vw), #{$max-image-size});
+
+
+        margin-top: 0px !important;
+
+    }
+
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}

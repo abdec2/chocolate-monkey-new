@@ -1,0 +1,157 @@
+input::placeholder {
+    color: #814038;
+    font-weight: 500;
+    opacity: 1;
+}
+
+.input-price::placeholder {
+    color: red;
+    font-weight: 500;
+}
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    transform: translateX(-25%);
+    bottom: 30px; /* 30px from the bottom */
+  }
+  
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+  #snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  /* Animations to fade the snackbar in and out */
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+
+
+.buy-mint {
+    position: sticky;
+    bottom: 0;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    width: 100%;
+    max-width: 2000px;
+    padding: 20px 10vw;
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
+}
+
+.mint-input {
+    background-color: #fee6d7;
+    padding: 10px;
+}
+
+.mint-input>:active {
+    border: none;
+}
+
+.input-group-presuffix {
+    font-weight: 500;
+    background-color: #fee6d7;
+    color: #814038;
+    padding: 10px;
+    background-color: #fee6d7;
+}
+
+.mint-input {
+    width: 20%;
+}
+
+.input-group-presuffix {
+    width: 35%;
+}
+
+.btn-nft {
+    font-weight: bold;
+    width: 15%;
+}
+
+.btn-opn {
+    font-weight: bold;
+    width: 25%;
+}
+
+.buy-mintM {
+    bottom: 0;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: space-between;
+    background-color: white;
+    width: 100%;
+    max-width: 2000px;
+    padding: 20px 10vw;
+}
+
+.mint-inputM {
+    width: 100% !important;
+}
+
+.input-group-presuffixM {
+    width: 100% !important;
+}
+
+.btn-nftM {
+    width: 100% !important;
+}
+
+.btn-opnM {
+    width: 100% !important;
+}
+
+.buy-mintM {
+    display: none;
+}
+
+@media (max-width:900px) {
+    .buy-mint {
+        display: none !important;
+    }
+
+    .buy-mintM {
+        display: flex !important;
+    }
+}

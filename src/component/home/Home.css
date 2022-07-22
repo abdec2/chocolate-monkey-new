@@ -1,0 +1,339 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-1 {
+    background-repeat: no-repeat;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('../../assets/icons/contactimg.svg');
+    background-size: cover;
+    margin-top: -100px;
+    padding-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 2000px;
+}
+
+span img {
+    float: left;
+    width: 40px;
+    margin-right: 10px;
+}
+
+a:hover span {
+    color: #ffffff49;
+}
+
+.home-h1 {
+    font-size: 150px;
+    color: #F0484B;
+    font-family: 'Marlissa';
+    z-index: 2;
+    margin-top: -5px;
+}
+
+.home-h2 {
+    font-size: 120px;
+    color: #63342E;
+    margin-top: -85px;
+    z-index: 1;
+    font-weight: bold;
+}
+
+.home-img1 {
+    margin-top: -130px;
+    width: 700px;
+    /* height: 50rem; */
+}
+
+.home-h3 {
+    padding-left: 3vw;
+    padding-right: 3vw;
+    font-size: 24px;
+    color: #63342E;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.home-gif2 {
+    max-width: 2000px;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.home-about {
+    max-width: 2000px;
+    width: 100%;
+    padding-top: 100px;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    background-color: #F0484B;
+    color: white;
+}
+
+.homeAbout-h1 {
+    font-weight: bold;
+    font-size: 85px;
+    padding-left: 30px;
+    margin-top: -220px;
+}
+
+.home-about2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+    .home-h1 {
+        font-size: 15vw !important;
+    }
+
+    .home-h2 {
+        font-size: 15vw !important;
+        margin-top: -12vw !important
+    }
+
+    .home-h3 {
+        font-size: 3vw !important;
+    }
+
+    .homeAbout-h1 {
+        font-size: 50px !important
+    }
+
+    .home-about {
+        padding-top: 30px !important;
+    }
+
+    .home-aboutFollow {
+        padding-bottom: 30px !important
+    }
+
+    .home-about2 {
+        display: flex !important;
+        padding-bottom: 30px !important;
+        flex-direction: column !important;
+    }
+
+    .home-aboutImage {
+        display: none !important;
+    }
+
+    .home-vision2 {
+        display: flex !important;
+        flex-direction: column !important;
+        padding-right: 3vw !important;
+    }
+
+    .home-visionImage {
+        width: 300px !important;
+    }
+
+    .home-collections {
+        flex-direction: column !important
+    }
+
+    .home-aboutExcerpt {
+        font-size: 14px !important;
+    }
+
+    .home-visionExcerpt {
+        font-size: 14px !important;
+    }
+
+    .homeCollectionsExcerpt {
+        font-size: 14px !important;
+    }
+
+    .home-tokenomicsExcerpt {
+        font-size: 14px !important;
+    }
+
+    .homeCollections-h1 {
+        font-size: 50px !important;
+        line-height: 40px !important;
+    }
+
+    .home-tokenomicsPie {
+        font-size: 20px !important;
+        line-height: 18px !important
+    }
+
+    .home-img1 {
+        width: 50vw !important;
+        margin-top: -12vw !important;
+    }
+
+
+}
+
+.home-aboutFollow {
+    flex: 0.2;
+}
+
+.home-aboutImage {
+    flex: 0.2;
+    align-self: self-end;
+}
+
+.home-aboutImage>img {
+    max-width: none;
+    height: auto;
+}
+
+.home-aboutExcerpt {
+    flex: 0.6;
+    font-size: 16px;
+}
+
+.home-aboutFollow {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-aboutFollow>span {
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+.home-vision {
+    max-width: 2000px;
+    width: 100%;
+    padding-left: 3vw;
+    background-color: #5D2E28;
+    color: white;
+}
+
+.home-vision2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-visionExcerpt {
+    flex: 0.45;
+    font-size: 16px;
+}
+
+.home-visionCenter {
+    flex: 0.15;
+}
+
+.home-visionImage {
+    flex: 0.4;
+    align-self: self-end;
+}
+
+.home-collections {
+    max-width: 2000px;
+    display: flex;
+    width: 100%;
+    padding-top: 100px;
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+.homeCollections-h1 {
+    font-weight: bold;
+    font-size: 85px;
+    line-height: 65px;
+    color: #8C6338;
+}
+
+.homeCollectionsExcerpt {
+    font-size: 16px;
+}
+
+.home-collections-left {
+    flex: 0.44;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-collections-center {
+    flex: 0.1;
+}
+
+.home-collections-right {
+    flex: 0.46;
+    display: flex;
+    flex-direction: column;
+    color: #5D2E28;
+}
+
+.btn {
+
+
+    border: 1px solid #F0484B;
+    background-color: #F0484B;
+    color: white;
+    padding: 15px;
+}
+
+.btn:hover {
+    border: 1px solid #F0484B;
+    background-color: #f0484b00;
+    color: #F0484B;
+    padding: 15px;
+}
+
+.btn1 {
+    width: 280px;
+    font-size: 12px;
+}
+
+.btn2 {
+    width: 150px;
+    font-size: 14px;
+}
+
+.home-tokenomics {
+    max-width: 2000px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-bottom: 5%;
+}
+
+.home-tokenomicsPie {
+    display: flex;
+    font-weight: bold;
+    margin-top: 30px;
+    display: flex;
+    width: 100%;
+    font-size: 24px;
+    color: #8C6338;
+}
+
+.home-tokenomicsExcerpt {
+    font-size: 16px;
+}
+
+.home-tokenomicsPieLeft {
+    flex: 0.46;
+}
+
+.home-tokenomicsPieCenter {
+    flex: 0.08;
+}
+
+.home-tokenomicsPieRight {
+    flex: 0.46;
+}
+
+.home-tokenomicsPieLeft>img {
+    margin-top: 30px;
+}
+
+.home-tokenomicsPieRight>img {
+    margin-top: 30px;
+}

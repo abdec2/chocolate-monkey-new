@@ -1,0 +1,139 @@
+.contact {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 2000px;
+    position: relative;
+    background-image: url('../../assets/icons/contactimg.svg');
+    margin-top: -100px;
+    padding-left: 10vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-right: 10vw;
+    padding-top: 120px;
+}
+
+@media (max-width:900px) {
+    .contact {
+        padding-left: 6vw !important;
+        padding-right: 6vw !important;
+    }
+
+    .contact-form {
+        margin: 0px !important;
+        padding: 5vw !important;
+    }
+
+    .contact-formDesc {
+        font-size: 18px !important;
+    }
+}
+
+.contact-formDesc {
+    color: #63342E;
+    font-size: 24px;
+    text-align: left;
+    font-weight: 500;
+}
+
+.contact-form {
+    background-color: #FFDBC5;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    padding: 40px;
+}
+
+
+.form-style-1 {
+    margin: 10px auto;
+}
+
+.form-style-1 li {
+    padding: 0;
+    display: block;
+    list-style: none;
+    margin: 10px 0 0 0;
+}
+
+.form-style-1 label {
+    color: #63342E;
+    margin: 0 0 3px 0;
+    padding: 0px;
+    display: block;
+}
+
+.form-style-1 input[type=text],
+.form-style-1 input[type=date],
+.form-style-1 input[type=datetime],
+.form-style-1 input[type=number],
+.form-style-1 input[type=search],
+.form-style-1 input[type=time],
+.form-style-1 input[type=url],
+.form-style-1 input[type=email],
+textarea,
+select {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 7px;
+    margin: 0px;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+}
+
+.form-style-1 input[type=text]:focus,
+.form-style-1 input[type=date]:focus,
+.form-style-1 input[type=datetime]:focus,
+.form-style-1 input[type=number]:focus,
+.form-style-1 input[type=search]:focus,
+.form-style-1 input[type=time]:focus,
+.form-style-1 input[type=url]:focus,
+.form-style-1 input[type=email]:focus,
+.form-style-1 textarea:focus,
+.form-style-1 select:focus {
+    -moz-box-shadow: 0 0 8px #88D5E9;
+    -webkit-box-shadow: 0 0 8px #88D5E9;
+    box-shadow: 0 0 8px #88D5E9;
+    border: 1px solid #88D5E9;
+}
+
+.form-style-1 .field-divided {
+    width: 49%;
+}
+
+.form-style-1 .field-long {
+    width: 100%;
+}
+
+.form-style-1 .field-select {
+    width: 100%;
+}
+
+.form-style-1 .field-textarea {
+    height: 100px;
+}
+
+.form-style-1 input[type=submit],
+.form-style-1 input[type=button] {
+    border: 2px solid #F0484B;
+    background: #F0484B;
+    width: 100%;
+    padding: 8px 15px 8px 15px;
+    color: #fff;
+}
+
+.form-style-1 input[type=submit]:hover,
+.form-style-1 input[type=button]:hover {
+    border: 2px solid #F0484B;
+    color: #F0484B;
+    background: #4691a400;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.form-style-1 .required {
+    color: red;
+}
