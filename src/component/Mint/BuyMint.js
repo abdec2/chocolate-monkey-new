@@ -6,6 +6,7 @@ import { GlobalContext } from "./../../context/GlobalContext";
 import Web3Modal from 'web3modal';
 import CONFIG from './../../config/config.json'
 import ABI from './../../config/abi.json';
+import IcoAbi from './../../config/ico.json'
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 import './buymint.css'
@@ -43,9 +44,11 @@ function BuyMint() {
         if (web3 && account) {
             try {
                 const contract = new ethers.Contract(contractAddress, ABI, web3);
+                const icoContract = new ethers.Contract(CONFIG.ICO_CONTRACT_ADDRESS, IcoAbi, web3);
                 const cost = await contract.getNFTPrice();
                 setNftCost(ethers.utils.formatEther(cost.toString()))
                 addBlockchain({
+                    'ico': icoContract,
                     'contract': contract,
                     'nftPrice': cost
                 })
@@ -159,7 +162,7 @@ function BuyMint() {
                             <input disabled className="mint-input" type="text" name="" id="" value={(parseFloat(nftCost) * parseInt(mintCount)).toFixed(2)} onChange={e=>console.log(e)} />
                             <span className="input-group-addon suffix">ETH</span>
                         </div>
-                        {loading ? (<button disabled className="btn btn-nft btn-nftM">Processing...</button>) : (<button className="btn btn-nft" onClick={claimNFT}>BUY NFT'S</button>)}
+                        {loading ? (<button disabled style={{width: '100%'}} className="btn btn-nft btn-nftM">Processing...</button>) : (<button className="btn btn-nft" style={{width: '100%'}} onClick={claimNFT}>BUY NFT'S</button>)}
                         <button className="btn btn-opn btn-opnM">BUY ON OPENSEA</button>
                     </>
                 ) : (

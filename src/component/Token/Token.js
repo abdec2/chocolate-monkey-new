@@ -5,6 +5,7 @@ import Footer from '../Contact/FooterContact'
 import tokenleft from '../../assets/icons/tokenleft.svg'
 import tokenbar from '../../assets/icons/tokenbar.svg'
 import Helmet from 'react-helmet'
+import BuyToken from './BuyToken'
 function Token() {
     return (
         <>
@@ -25,6 +26,7 @@ function Token() {
             <div className="token-bottom">
                 <img src={tokenbar} alt="" />
             </div>
+            <BuyToken/>
             <Footer />
         </>
     )
