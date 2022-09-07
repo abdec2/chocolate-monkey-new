@@ -141,7 +141,7 @@ function BuyMint() {
                         <input className="mint-input" type="number" placeholder="Amount" value={mintCount} onChange={mintCountOnChange} />
                         <div className="input-group-presuffix">
                             <span className="input-group-addon prefix">Rate:{" "}</span>
-                            <input disabled style={{width: '35%'}} className="mint-input" type="text" name="" id="" value={CONFIG.ICO_RATE} onChange={e=>console.log(e)} />
+                            <input disabled style={{width: '50%'}} className="mint-input" type="text" name="" id="" value={CONFIG.ICO_RATE} onChange={e=>console.log(e)} />
                             <span className="input-group-addon suffix">ETH</span>
                         </div>
                         {loading ? (<button disabled className="btn btn-nft">Processing...</button>) : (<button className="btn btn-nft" onClick={buyToken}>BUY</button>)}
@@ -157,8 +157,8 @@ function BuyMint() {
                     <>
                         <input className="mint-input mint-inputM" type="number" name="" id="" placeholder="Amount" value={mintCount} onChange={mintCountOnChange} />
                         <div className="input-group-presuffix input-group-presuffixM">
-                            <span className="input-group-addon prefix">Price:{" "}</span>
-                            <input disabled style={{width: "50%"}} className="mint-input" type="text" name="" id="" value={CONFIG.ICO_RATE} onChange={e=>console.log(e)} />
+                            <span className="input-group-addon prefix">Rate:{" "}</span>
+                            <input disabled style={{width: "75%"}} className="mint-input" type="text" name="" id="" value={CONFIG.ICO_RATE} onChange={e=>console.log(e)} />
                             <span className="input-group-addon suffix">ETH</span>
                         </div>
                         {loading ? (<button disabled style={{width: '100%'}} className="btn btn-nft btn-nftM">Processing...</button>) : (<button className="btn btn-nft" style={{width: '100%'}} onClick={buyToken}>BUY</button>)}
