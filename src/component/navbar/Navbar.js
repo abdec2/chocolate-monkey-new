@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import cmlogo from "../../../src/assets/icons/cmlogo.svg"
 import Hamburger from './Hamburger.js';
+import pdf from './../../assets/whitepaper/whitepaper.pdf'
 import "./Navbar.css"
 
 
@@ -41,7 +42,7 @@ function Navbar() {
                     <Link className="navLink" aria-current="page" to="/mint">Mint</Link>
                     <Link className="navLink" aria-current="page" to="/token">Token</Link>
                     <Link className="navLink" aria-current="page" to="/charity">The Charity</Link>
-                    <Link className="navLink" aria-current="page" to="/">Whitepaper</Link>
+                    <Link className="navLink" aria-current="page" to={pdf} target="_blank">Whitepaper</Link>
                     <Link className="navLink" aria-current="page" to="/contact">Contact</Link>
                     <Link className="navLink" aria-current="page" to="/news">News</Link>
                     <Link className="navLink" aria-current="page" to="/media">Media</Link>

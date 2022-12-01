@@ -1,0 +1,68 @@
+.token-header {
+    max-width: 2000px;
+    margin-left: auto;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* background-color: #fee6d7; */
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    margin-right: auto;
+    background-color: #F0484B;
+}
+
+.token-header-icon {
+    height: 55px;
+}
+
+
+@media (max-width: 900px) {
+    .token-header-right {
+        display: none !important;
+    }
+}
+
+.token-header-left-menu>ul {
+    font-size: 0.8rem;
+}
+
+.token-header-left {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.token-header-left-menu {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.token-navLink {
+    padding: 10px;
+}
+
+.token-header-right {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: white;
+}
+
+.ant-drawer-header {
+    background-color: #fee6d7 !important;
+}
+
+.ant-drawer-body {
+    background-color: #fee6d7 !important;
+}
+
+.hamb-menuli {
+    display: flex;
+    flex-direction: column;
+}

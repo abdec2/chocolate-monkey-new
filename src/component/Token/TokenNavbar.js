@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import cmlogo from "../../../src/assets/icons/cmlogo.svg"
 import Hamburger from '../navbar/Hamburger';
 import "./TokenNavbar.css"
+import pdf from '../../assets/whitepaper/whitepaper.pdf'
 function Navbar() {
     return (
 
@@ -25,11 +26,11 @@ function Navbar() {
                     <Link className="token-navLink" aria-current="page" to="/mint">Mint</Link>
                     <Link className="token-navLink" aria-current="page" to="/token">Token</Link>
                     <Link className="token-navLink" aria-current="page" to="/charity">The Charity</Link>
-                    <Link className="token-navLink" aria-current="page" to="/">Whitepaper</Link>
+                    <Link className="token-navLink" aria-current="page" to={pdf} target="_blank">Whitepaper</Link>
                     <Link className="token-navLink" aria-current="page" to="/contact">Contact</Link>
-                    <Link className="token-navLink" aria-current="page" to="/news">News</Link>
-                    <Link className="token-navLink" aria-current="page" to="/media">Media</Link>
-                    <Link className="token-navLink" aria-current="page" to="/press">Press</Link>
+                    {/* <Link className="token-navLink" aria-current="page" to="/news">News</Link> */}
+                    {/* <Link className="token-navLink" aria-current="page" to="/media">Media</Link>
+                    <Link className="token-navLink" aria-current="page" to="/press">Press</Link> */}
                 </div>
 
             </div>

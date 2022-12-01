@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="71" height="26" viewBox="0 0 71 26">
+  <g id="Group_3911" data-name="Group 3911" transform="translate(-745 -4348.182)">
+    <text id="ETH_Rate" data-name="ETH Rate" transform="translate(779 4367.182)" fill="#fff" font-size="18" font-family="Jost-Bold, Jost" font-weight="700" letter-spacing="0.05em"><tspan x="0" y="0">ETH</tspan></text>
+    <g id="Group_3909" data-name="Group 3909" transform="translate(745 4348.182)">
+      <circle id="Ellipse_377" data-name="Ellipse 377" cx="12.5" cy="12.5" r="12.5" fill="#004cff"/>
+      <g id="Group_1488" data-name="Group 1488" transform="translate(7.478 3.931)">
+        <path id="Path" d="M632.2,207.1v5.954l5.032,2.249Z" transform="translate(-627.168 -207.1)" fill="rgba(255,255,255,0.6)"/>
+        <path id="Path_1_" d="M465.832,207.1l-5.032,8.2,5.032-2.249Z" transform="translate(-460.8 -207.1)" fill="#fff"/>
+        <path id="Path_2_" d="M632.2,521.321v4.046l5.035-6.967Z" transform="translate(-627.168 -509.26)" fill="rgba(255,255,255,0.6)"/>
+        <path id="Path_3_" d="M465.832,525.367v-4.046L460.8,518.4Z" transform="translate(-460.8 -509.26)" fill="#fff"/>
+        <path id="Path_4_" d="M632.2,415.07l5.032-2.921L632.2,409.9Z" transform="translate(-627.168 -403.946)" fill="rgba(255,255,255,0.2)"/>
+        <path id="Path_5_" d="M460.8,412.149l5.032,2.921V409.9Z" transform="translate(-460.8 -403.946)" fill="rgba(255,255,255,0.6)"/>
+      </g>
+    </g>
+  </g>
+</svg>
