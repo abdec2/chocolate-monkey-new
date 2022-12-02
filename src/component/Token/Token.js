@@ -13,6 +13,7 @@ import tokend from '../../assets/icons/tokend.svg'
 import commallo from '../../assets/icons/commallo.svg'
 import eth from '../../assets/icons/etlogo.svg'
 import cho from '../../assets/icons/chlogo.svg'
+import CONFIG from './../../config/config.json'
 
 function Token() {
     return (
@@ -108,20 +109,20 @@ function Token() {
                     <img style={{ height: "40px", marginRight: "auto" }} src={eth} alt="" />
                     <input type="text" className='bg-transparent' style={{ marginRight: "auto", color: "#F0484B", fontSize: "52px" }} />
                     <div style={{ display: "flex", justifyContent: "space-between", color: "white" }}>
-                        <span>~$46,685.46</span>
-                        <span>Balance:56.7802</span>
+                        <span>~$0</span>
+                        <span>Balance:0.00</span>
                     </div>
                 </div>
                 <div className='token-box'>
                     <img style={{ height: "40px", marginRight: "auto" }} src={cho} alt="" />
                     <input disabled type="text" className='bg-transparent' style={{ marginRight: "auto", color: "#F0484B", fontSize: "52px" }} />
                     <div style={{ display: "flex", justifyContent: "space-between", color: "white" }}>
-                        <span>~$2,026</span>
+                        <span>~$0</span>
                         <span>Balance:0</span>
                     </div>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", marginTop: "30px", color: "white", fontWeight: "700" }}>
-                    <span>1 CHOCO = 0.0006884 ETH ($2,026.00)</span>
+                    <span>1 CHOCO = {CONFIG.ICO_RATE} ETH</span>
                     <button style={{ marginLeft: "auto", marginRight: "auto", width: "50%", marginTop: "30px", marginBottom: "30px" }} className='btn btn-tkn'>START CONNECTING NOW</button>
                 </div>
             </div>
