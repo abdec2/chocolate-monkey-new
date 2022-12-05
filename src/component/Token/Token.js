@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import './Token.css'
 import Header from './TokenNavbar'
 import Footer from '../footer/Footer.js'
@@ -6,7 +6,7 @@ import tokenleft from '../../assets/icons/tokenleft.svg'
 import tokenbar from '../../assets/icons/tokenbar.svg'
 import Helmet from 'react-helmet'
 import Countdown from './Countdown.js'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import pdf from '../../assets/whitepaper/whitepaper.pdf'
 import tokenomics from '../../assets/icons/tokenomics.svg'
 import tokend from '../../assets/icons/tokend.svg'
@@ -14,8 +14,64 @@ import commallo from '../../assets/icons/commallo.svg'
 import eth from '../../assets/icons/etlogo.svg'
 import cho from '../../assets/icons/chlogo.svg'
 import CONFIG from './../../config/config.json'
+import { ethers } from 'ethers'
+import { GlobalContext } from '../../context/GlobalContext'
+import TokenAbi from './../../config/tokenAbi.json'
 
 function Token() {
+    const [chocoAmount, setChocoAmount] = useState(0)
+    const [tokenBalance, setTokenBalance] = useState(0)
+    const [ethBalance, setEthBalance] = useState(0)
+    const ethInputAmount = useRef()
+    const navigate = useNavigate()
+
+    const navigateTo = (link) => {
+        navigate(link)
+    }
+
+    const {
+        account,
+        blockchainData,
+        network,
+        web3,
+        delAccount,
+        addAccount,
+        addNetwork,
+        addBlockchain,
+        addWeb3 } = useContext(GlobalContext);
+
+
+    const handleOnChange = () => {
+        const regExp = /^\d*\.?\d*$/;
+        if(ethInputAmount.current.value !== '') {
+            if (!regExp.test(ethInputAmount.current.value)) {
+                ethInputAmount.current.value = ''
+                setChocoAmount(0)
+                return
+            }
+    
+            const ethAmountinWei = ethers.utils.parseEther(ethInputAmount.current.value)
+            setChocoAmount(ethers.utils.formatEther(ethAmountinWei.mul(CONFIG.RATE)))
+        } else {
+            setChocoAmount(0)
+        }
+    }
+
+    useEffect(()=>{
+        if(account && web3) {
+            web3.getBalance(account).then(balance => {
+                console.log(balance.toString())
+                setEthBalance(parseFloat(ethers.utils.formatEther(balance)))
+            })
+            const signer = web3.getSigner()
+            const tokenContract = new ethers.Contract(CONFIG.TOKEN_ADDRESS, TokenAbi, signer)
+            tokenContract.balanceOf(account).then(balance => {
+                console.log(balance.toString())
+                setTokenBalance(parseFloat(ethers.utils.formatEther(balance)))
+            })
+        } 
+    }, [account])
+
     return (
         <>
             <Helmet>
@@ -41,8 +97,8 @@ function Token() {
                 <span className='token-h2'>The Choco sale starts in</span>
                 <Countdown />
                 <div className='cdn-btns'>
-                    <button onClick='/mint' className='btn btn-1' >BUY CHOCO COIN</button>
-                    <a className="navLink" href={pdf} target="_blank" rel="noreferrer"><button onClick='/whitepaper' className='btn btn-1' >WHITEPAPER</button></a>
+                    <button onClick={() => navigateTo('/mint')} className='btn btn-1' >BUY CHOCO COIN</button>
+                    <a className="navLink" href={pdf} target="_blank" rel="noreferrer"><button className='btn btn-1' >WHITEPAPER</button></a>
                 </div>
                 <div className='cdn-stg'>
                     <div className='cdn-stgs'>
@@ -107,18 +163,18 @@ function Token() {
                 <span className='token-pcptxt'>PARTICIPATE IN<br /> THE CHOCO SALE</span>
                 <div className='token-box'>
                     <img style={{ height: "40px", marginRight: "auto" }} src={eth} alt="" />
-                    <input type="text" className='bg-transparent' style={{ marginRight: "auto", color: "#F0484B", fontSize: "52px" }} />
+                    <input type="text" className='bg-transparent' style={{ marginRight: "auto", color: "#F0484B", fontSize: "52px" }} ref={ethInputAmount} onChange={handleOnChange} />
                     <div style={{ display: "flex", justifyContent: "space-between", color: "white" }}>
                         <span>~$0</span>
-                        <span>Balance:0.00</span>
+                        <span>Balance: {ethBalance.toFixed(5)}</span>
                     </div>
                 </div>
                 <div className='token-box'>
                     <img style={{ height: "40px", marginRight: "auto" }} src={cho} alt="" />
-                    <input disabled type="text" className='bg-transparent' style={{ marginRight: "auto", color: "#F0484B", fontSize: "52px" }} />
+                    <input disabled type="text" className='bg-transparent' style={{ marginRight: "auto", color: "#F0484B", fontSize: "52px" }} value={chocoAmount} />
                     <div style={{ display: "flex", justifyContent: "space-between", color: "white" }}>
                         <span>~$0</span>
-                        <span>Balance:0</span>
+                        <span>Balance: {tokenBalance}</span>
                     </div>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", marginTop: "30px", color: "white", fontWeight: "700" }}>
