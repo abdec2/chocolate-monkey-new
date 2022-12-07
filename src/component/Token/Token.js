@@ -17,8 +17,28 @@ import CONFIG from './../../config/config.json'
 import { ethers } from 'ethers'
 import { GlobalContext } from '../../context/GlobalContext'
 import TokenAbi from './../../config/tokenAbi.json'
+import ABI from './../../config/abi.json'
+import IcoAbi from './../../config/ico.json'
+import Web3Modal from 'web3modal';
+import WalletConnectProvider from "@walletconnect/web3-provider";
+
+const providerOptions = {
+    walletconnect: {
+        package: WalletConnectProvider, // required
+        options: {
+            infuraId: process.env.REACT_APP_INFURA_PROJECT_ID // required
+        }
+    }
+
+};
 
 function Token() {
+    const [error, setError] = useState(false)
+    const [errorMsg, setErrorMsg] = useState('')
+    const [mintCount, setMintCount] = useState('')
+    const [nftCost, setNftCost] = useState(0.00)
+    const [loading, setLoading] = useState(false)
+
     const [chocoAmount, setChocoAmount] = useState(0)
     const [tokenBalance, setTokenBalance] = useState(0)
     const [ethBalance, setEthBalance] = useState(0)
@@ -40,7 +60,7 @@ function Token() {
         addBlockchain,
         addWeb3 } = useContext(GlobalContext);
 
-
+        
     const handleOnChange = () => {
         const regExp = /^\d*\.?\d*$/;
         if(ethInputAmount.current.value !== '') {
@@ -57,8 +77,86 @@ function Token() {
         }
     }
 
+    const loadBlockChain = async () => {
+        if (web3 && account) {
+            try {
+                const contract = new ethers.Contract(CONFIG.CONTRACT_ADDRESS, ABI, web3);
+                const icoContract = new ethers.Contract(CONFIG.ICO_CONTRACT_ADDRESS, IcoAbi, web3);
+                const cost = await contract.getNFTPrice();
+                setNftCost(ethers.utils.formatEther(cost.toString()))
+                addBlockchain({
+                    'ico': icoContract,
+                    'contract': contract,
+                    'nftPrice': cost
+                })
+                console.log('contract', cost.toString())
+            } catch (e) {
+                setError(true)
+                setErrorMsg('Contract not deployed to current network, please change network to Ethereum Mainnet')
+            }
+        }
+    }
+
+    const connectWallet = async () => {
+        const web3modal = new Web3Modal({
+            providerOptions
+        });
+        const instance = await web3modal.connect();
+        const provider = new ethers.providers.Web3Provider(instance);
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
+        addAccount({ id: address });
+        const networkId = await provider.getNetwork();
+        console.log(networkId)
+        addNetwork(networkId)
+        addWeb3(provider)
+        if (networkId.chainId == CONFIG.CHAIN_ID) {
+            setError(false)
+            setErrorMsg('')
+        } else {
+            setError(true)
+            setErrorMsg('Contract not deployed to current network, please change network to Ethereum Mainnet')
+        }
+
+    }
+
+    const buyToken = async () => {
+        const regExp = /^\d*\.?\d*$/;
+        if(ethInputAmount.current.value !== '') {
+            if (!regExp.test(ethInputAmount.current.value)) {
+                ethInputAmount.current.value = ''
+                return
+            }    
+        }
+        const ethPrice = ethers.utils.parseEther(ethInputAmount.current.value)
+        try {
+            setLoading(true)
+            console.log(ethPrice.toString())
+
+            const signer = web3.getSigner()
+
+            const contractWithSigner = blockchainData.ico.connect(signer)
+            const estimate = await contractWithSigner.estimateGas.buyTokens(account, {value: ethPrice.toString()})
+            console.log(estimate.toString())
+            const tx = await contractWithSigner.buyTokens(account, {value: ethPrice.toString(), gasLimit: estimate.toString() })
+            const receipt = await tx.wait()
+            console.log(receipt)
+            setLoading(false)
+        } catch (e) {
+            setLoading(false)
+        }
+    }
+
     useEffect(()=>{
+        loadBlockChain();
         if(account && web3) {
+            window.ethereum.on('accountsChanged', accounts => {
+                addAccount({ id: accounts[0] })
+            })
+            window.ethereum.on('chainChanged', chainId => {
+                window.location.reload();
+            })
+
             web3.getBalance(account).then(balance => {
                 console.log(balance.toString())
                 setEthBalance(parseFloat(ethers.utils.formatEther(balance)))
@@ -70,7 +168,7 @@ function Token() {
                 setTokenBalance(parseFloat(ethers.utils.formatEther(balance)))
             })
         } 
-    }, [account])
+    }, [account, web3])
 
     return (
         <>
@@ -165,7 +263,7 @@ function Token() {
                     <img style={{ height: "40px", marginRight: "auto" }} src={eth} alt="" />
                     <input type="text" className='bg-transparent' style={{ marginRight: "auto", color: "#F0484B", fontSize: "52px" }} ref={ethInputAmount} onChange={handleOnChange} />
                     <div style={{ display: "flex", justifyContent: "space-between", color: "white" }}>
-                        <span>~$0</span>
+                        <span></span>
                         <span>Balance: {ethBalance.toFixed(5)}</span>
                     </div>
                 </div>
@@ -173,17 +271,28 @@ function Token() {
                     <img style={{ height: "40px", marginRight: "auto" }} src={cho} alt="" />
                     <input disabled type="text" className='bg-transparent' style={{ marginRight: "auto", color: "#F0484B", fontSize: "52px" }} value={chocoAmount} />
                     <div style={{ display: "flex", justifyContent: "space-between", color: "white" }}>
-                        <span>~$0</span>
+                        <span></span>
                         <span>Balance: {tokenBalance}</span>
                     </div>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", marginTop: "30px", color: "white", fontWeight: "700" }}>
                     <span>1 CHOCO = {CONFIG.ICO_RATE} ETH</span>
-                    <button style={{ marginLeft: "auto", marginRight: "auto", width: "50%", marginTop: "30px", marginBottom: "30px" }} className='btn btn-tkn'>START CONNECTING NOW</button>
+                    {
+                        !account && (
+                            <button style={{ marginLeft: "auto", marginRight: "auto", width: "50%", marginTop: "30px", marginBottom: "30px" }} className='btn btn-tkn' onClick={connectWallet}>START CONNECTING NOW</button>
+                        )
+                    }
+                    {
+                        account && (
+                            <>
+                                <button disabled={loading} style={{ marginLeft: "auto", marginRight: "auto", width: "50%", marginTop: "30px", marginBottom: "30px" }} className='btn btn-tkn' onClick={buyToken}>{loading ? 'Loading...' : 'Buy Tokens'}</button>
+                            </>
+                        )
+                    }
                 </div>
             </div>
-
             <Footer />
+            {error && (<div id="snackbar" className='show'>{errorMsg}</div>)}
         </>
     )
 }
